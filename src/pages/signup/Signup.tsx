@@ -28,7 +28,6 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-function getStepContent(stepIndex: number) {}
 
 const Signup = (): JSX.Element => {
   const classes = useStyles();
@@ -39,10 +38,9 @@ const Signup = (): JSX.Element => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
+  const onSubmit  = (formState: object) => {
+      console.log(formState)
+  }
   const handleReset = () => {
     setActiveStep(0);
   };
