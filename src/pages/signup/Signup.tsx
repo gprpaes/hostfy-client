@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import FormControl from "@material-ui/core/FormControl";
-import Input from "@material-ui/core/Input";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
@@ -10,46 +8,27 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { TextField } from "@material-ui/core";
+import Forms from "./Forms";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     main: {
       margin: "10px",
-      marginTop: "20px",
+      marginTop: "100px",
       overflow: "hidden",
       display: "flex",
+      padding: "20px",
+      paddingLeft: "150px",
+      paddingRight: "150px"
     },
-   
+    next: {
+      float: "right",
+      marginTop: "15px"
+    },
   })
 );
 
-function getStepContent(stepIndex: number) {
-  switch (stepIndex) {
-    case 0:
-      return (
-        <Grid container spacing={2}>
-          <Grid item xs={6}>
-            <TextField label="Nome da propriedade" fullWidth/>
-          </Grid>
-          <Grid item xs={6}>
-          <TextField label="CNPJ" fullWidth/>
-          </Grid>
-          <Grid item xs={6}>
-            <TextField label="Endereço" fullWidth/>
-          </Grid>
-          <Grid item xs={6}>
-          <TextField label="Número de Quartos" fullWidth/>
-          </Grid>
-        </Grid>
-      ); 
-    case 1:
-      return "What is an ad group anyways?";
-    case 2:
-      return "This is the bit I really care about!";
-    default:
-      return "Unknown stepIndex";
-  }
-}
+function getStepContent(stepIndex: number) {}
 
 const Signup = (): JSX.Element => {
   const classes = useStyles();
@@ -88,12 +67,10 @@ const Signup = (): JSX.Element => {
             </div>
           ) : (
             <div>
-              <Typography>{getStepContent(activeStep)}</Typography>
+              <Forms stepIndex={activeStep} />
               <div>
-                <Button disabled={activeStep === 0} onClick={handleBack}>
-                  Back
-                </Button>
                 <Button
+                  className={classes.next   }
                   variant="contained"
                   color="primary"
                   onClick={handleNext}
