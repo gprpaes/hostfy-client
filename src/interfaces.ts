@@ -5,7 +5,7 @@ export interface ReduxState {
 
 export interface ReduxAction {
   type: string;
-  value: object;
+  value: object | unknown | any | number;
 }
 
 export interface PropertyInterface {

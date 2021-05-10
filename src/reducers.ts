@@ -19,8 +19,6 @@ const defaultState = {
       password: { defaultValue: null, value: null },
       position: { defaultValue: null, value: null },
     },
-      step: 0
-
   },
 };
 
@@ -29,6 +27,22 @@ const reducers = (
   action: ReduxAction
 ): ReduxState => {
   switch (action.type) {
+    case "SET_FIELD_PROPERTY":
+      const { field, value } = action.value;
+      return {
+        ...state,
+        signUpForm: {
+          propertyForm: {
+            ...state.signUpForm.propertyForm,
+            [field]: {
+              // @ts-ignore
+              ...state.signUpForm.propertyForm[field],
+              value,
+            },
+          },
+          userForm: { ...state.signUpForm.userForm },
+        },
+      }
     default:
       return state;
   }

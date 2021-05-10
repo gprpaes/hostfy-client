@@ -41,6 +41,7 @@ const Signup = ({propertyForm, userForm}: FormStateSignUpInterface): JSX.Element
   };
 
   const onSubmit = (formState: object) => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
     console.log(formState);
   };
 
@@ -74,7 +75,7 @@ const Signup = ({propertyForm, userForm}: FormStateSignUpInterface): JSX.Element
                   className={classes.next}
                   variant="contained"
                   color="primary"
-                  onClick={handleNext}
+                  onClick={() => onSubmit(propertyForm)}
                 >
                   {activeStep === steps.length - 1 ? "Finish" : "Next"}
                 </Button>
