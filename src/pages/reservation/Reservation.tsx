@@ -11,6 +11,8 @@ import { useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
+import {ReduxState} from "../../interfaces"
+import {connect} from "react-redux"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -70,4 +72,14 @@ const Reservation = (): JSX.Element => {
   );
 };
 
-export default Reservation;
+const mapStateToProps = (state: ReduxState): any => {
+    return {
+      propertyForm: state.signUpForm.propertyForm,
+      userForm: state.signUpForm.userForm,
+      bedroomForm: state.guestForm.bedroomForm,
+      reservationForm: state.guestForm.reservationForm,
+    };
+  };
+  
+  export default connect(mapStateToProps)(Reservation);
+  
