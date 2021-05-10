@@ -43,6 +43,25 @@ export const saveUser = async (formState: object): Promise<any> => {
   });
 };
 
+export const saveBedroom = async (formState: object): Promise<any> => {
+  return await axios.post("http://localhost:8000/user", {
+    // @ts-ignore
+    number: formState.number.value,
+    // @ts-ignore
+    type: formState.type.value,
+    // @ts-ignore
+    bedtype: "Casal",
+    // @ts-ignore
+    capacity: formState.capacity.value,
+    // @ts-ignore
+    status: "Disponível",
+    // @ts-ignore
+    booked: false,
+    // @ts-ignore
+    propertyId: formState.propertyId.value
+  });
+};
+
 export const login = async (email: string, password: string): Promise<any> => {
   return await axios.get(
     `http://localhost:8000/login?email=${email}&password=${password}`
