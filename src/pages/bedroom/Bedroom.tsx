@@ -12,7 +12,7 @@ import Grid from "@material-ui/core/Grid";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import { connect } from "react-redux";
-import {ReduxState} from "../../interfaces"
+import { ReduxState } from "../../interfaces";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -42,7 +42,12 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 );
-const Bedroom = (): JSX.Element => {
+const Bedroom = ({
+  userForm,
+  propertyForm,
+  reservationForm,
+  bedroomForm,
+}: any): JSX.Element => {
   let history = useHistory();
   const classes = useStyles();
   return (

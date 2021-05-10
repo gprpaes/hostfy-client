@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 );
-const Reservation = (): JSX.Element => {
+const Reservation = ({userForm, propertyForm, reservationForm, bedroomForm}: any): JSX.Element => {
   let history = useHistory();
   const classes = useStyles();
   return (
