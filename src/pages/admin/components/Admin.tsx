@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button";
 import HotelIcon from "@material-ui/icons/Hotel";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -18,6 +19,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     title: {
       flexGrow: 1,
+    },
+    gridmain: {
+      height: "93.2vh", 
     },
   })
 );
@@ -39,9 +43,15 @@ const Admin = (): JSX.Element => {
           <Typography variant="h6" className={classes.title}>
             Administrador
           </Typography>
-          <Button color="inherit" onClick={() => history.push("/")}>Sair</Button>
+          <Button color="inherit" onClick={() => history.push("/")}>
+            Sair
+          </Button>
         </Toolbar>
       </AppBar>
+
+      <Grid container direction="row" justify="center" alignItems="center" className ={classes.gridmain}>
+        <h1>aaaa</h1>
+      </Grid>
     </>
   );
 };
