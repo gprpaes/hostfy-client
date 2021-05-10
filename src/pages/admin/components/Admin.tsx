@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import HotelIcon from "@material-ui/icons/Hotel";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import LaptopChromebookIcon from "@material-ui/icons/LaptopChromebook";
 import { useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 
@@ -27,13 +28,14 @@ const useStyles = makeStyles((theme: Theme) =>
     buttonmain: {
       height: "500px",
       width: "500px",
-      margin: "15px"
+      margin: "15px",
     },
   })
 );
 const Admin = (): JSX.Element => {
+  let history = useHistory();  
   const classes = useStyles();
-  let history = useHistory();
+  
   return (
     <>
       <AppBar position="static">
@@ -66,15 +68,17 @@ const Admin = (): JSX.Element => {
           className={classes.buttonmain}
           variant="contained"
           color="primary"
+          onClick={() => {history.push("/bedroom")}}
         >
-          Quartos
+          <HotelIcon style={{ margin: "15px" }} /> Quartos
         </Button>
         <Button
           className={classes.buttonmain}
           variant="contained"
           color="primary"
+          onClick={() => {history.push("/reservation")}}
         >
-          Reservas
+          <LaptopChromebookIcon style={{ margin: "15px" }} /> Reservas
         </Button>
       </Grid>
     </>
