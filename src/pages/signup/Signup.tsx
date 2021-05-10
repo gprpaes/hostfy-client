@@ -10,6 +10,8 @@ import Typography from "@material-ui/core/Typography";
 import { TextField } from "@material-ui/core";
 import FormProperty from "./FormProperty";
 import FormUser from "./FormUser";
+import { FormStateSignUpInterface, ReduxState } from "../../interfaces";
+import {connect} from "react-redux"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -29,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const Signup = (): JSX.Element => {
+const Signup = ({propertyForm, userForm}: FormStateSignUpInterface): JSX.Element => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const steps = ["Propriedade", "Administrador"];
@@ -85,4 +87,12 @@ const Signup = (): JSX.Element => {
   );
 };
 
-export default Signup;
+const mapStateToProps = (state: ReduxState): FormStateSignUpInterface => {
+    return {
+      
+      propertyForm: state.signUpForm.propertyForm,
+      userForm: state.signUpForm.userForm,
+    };
+  };
+  
+  export default connect(mapStateToProps)(Signup);
