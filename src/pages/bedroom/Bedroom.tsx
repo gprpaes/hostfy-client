@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+//@ts-nocheck
+import React, { useState, useEffect } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -28,7 +29,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 
 import { setFieldBedroomForm } from "../../actions";
-import { saveBedroom } from "../../api/api";
+import { saveBedroom, listBedroom } from "../../api/api";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -65,14 +66,18 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
+async function test() {
+  const response = await listBedroom();
+  console.log(response);
+}
+
 function createData(
-  number : string,
+  number: string,
   type: string,
   bedtype: string,
-  capacity: number,
-  
+  capacity: number
 ) {
-  return {number, type, bedtype, capacity};
+  return { number, type, bedtype, capacity };
 }
 
 const rows = [
@@ -89,9 +94,17 @@ const Bedroom = ({
   reservationForm,
   bedroomForm,
 }: any): JSX.Element => {
-  const [openBedroomModal, setOpenBedroomModal] = useState(false);
   let history = useHistory();
+  const [openBedroomModal, setOpenBedroomModal] = useState(false);
+  const [bedrooms, setBedrooms] = useState([]);
   const classes = useStyles();
+  useEffect(() => {
+    listBedroom().then((response) => setBedrooms(response.data.data));
+  }, []);
+
+  useEffect(() => {
+    console.log(bedrooms);
+  }, [bedrooms]);
   return (
     <>
       <AppBar position="static">
@@ -124,7 +137,8 @@ const Bedroom = ({
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
+            
+            {bedrooms && bedrooms.map((row) => (
               <TableRow key={row.number}>
                 <TableCell component="th" scope="row">
                   {row.number}
@@ -213,8 +227,10 @@ const Bedroom = ({
           <Button
             onClick={async () => {
               setFieldBedroomForm("propertyId", userForm.propertyId.value);
-              await saveBedroom(bedroomForm).then((res) =>
+              await saveBedroom(bedroomForm).then((res) =>{
                 setOpenBedroomModal(false)
+                history.push("/bedroom")
+              }
               );
             }}
             color="primary"
