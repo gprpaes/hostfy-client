@@ -62,6 +62,10 @@ export const saveBedroom = async (formState: object): Promise<any> => {
   });
 };
 
+export const listBedroom = async (): Promise<any> => {
+    return await axios.get("http://localhost:8000/bedroom")
+}
+
 export const login = async (email: string, password: string): Promise<any> => {
   return await axios.get(
     `http://localhost:8000/login?email=${email}&password=${password}`
