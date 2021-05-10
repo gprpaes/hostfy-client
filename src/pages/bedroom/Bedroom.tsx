@@ -19,6 +19,14 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import TextField from "@material-ui/core/TextField";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
+
 import { setFieldBedroomForm } from "../../actions";
 import { saveBedroom } from "../../api/api";
 
@@ -48,8 +56,33 @@ const useStyles = makeStyles((theme: Theme) =>
       right: "25px",
       bottom: "25px",
     },
+    table: {
+      marginTop: "150px",
+      marginRight: "20px",
+      marginLeft: "20px",
+      minWidth: 650,
+    },
   })
 );
+
+function createData(
+  number : string,
+  type: string,
+  bedtype: string,
+  capacity: number,
+  
+) {
+  return {number, type, bedtype, capacity};
+}
+
+const rows = [
+  createData("Frozen yoghurt", "159", "6.0", 24),
+  createData("Ice cream sandwich", "237", "9.0", 37),
+  createData("Eclair", "262", "16.0", 24),
+  createData("Cupcake", "30", "3.7", 67),
+  createData("Gingerbrea", "356", "16.0", 49),
+];
+
 const Bedroom = ({
   userForm,
   propertyForm,
@@ -79,6 +112,32 @@ const Bedroom = ({
           </Button>
         </Toolbar>
       </AppBar>
+
+      <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Número</TableCell>
+              <TableCell align="right">Tipo de quarto</TableCell>
+              <TableCell align="right">Tipo de Cama</TableCell>
+              <TableCell align="right">Capacidade</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <TableRow key={row.number}>
+                <TableCell component="th" scope="row">
+                  {row.number}
+                </TableCell>
+                <TableCell align="right">{row.type}</TableCell>
+                <TableCell align="right">{row.bedtype}</TableCell>
+                <TableCell align="right">{row.capacity}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+
       <Fab
         className={classes.floating}
         variant="extended"
@@ -153,11 +212,10 @@ const Bedroom = ({
           </Button>
           <Button
             onClick={async () => {
-              setFieldBedroomForm(
-                "propertyId",
-                userForm.propertyId.value
+              setFieldBedroomForm("propertyId", userForm.propertyId.value);
+              await saveBedroom(bedroomForm).then((res) =>
+                setOpenBedroomModal(false)
               );
-              await saveBedroom(bedroomForm).then(res=> setOpenBedroomModal(false));
             }}
             color="primary"
           >
