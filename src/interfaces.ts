@@ -25,6 +25,7 @@ export interface UserInterface {
   userName: { defaultValue: string | null; value: string | null };
   password: { defaultValue: string | null; value: string | null };
   position: { defaultValue: string | null; value: string | null };
+  propertyId: { defaultValue: string | null; value: string | null };
 }
 
 export interface FormStateSignUpInterface {

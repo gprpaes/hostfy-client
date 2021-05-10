@@ -45,7 +45,11 @@ const Signup = ({
   const onSubmit = async (formState: object) => {
     if (activeStep == 0) {
       setLoading(true)
-      await saveProperty(formState);
+      const response = await saveProperty(formState); 
+      if(response.data && response.data.success){
+          setLoading(false);
+          setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      }
     }
     //setActiveStep((prevActiveStep) => prevActiveStep + 1);
     console.log(formState);

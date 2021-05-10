@@ -18,6 +18,7 @@ const defaultState = {
       userName: { defaultValue: null, value: null },
       password: { defaultValue: null, value: null },
       position: { defaultValue: null, value: null },
+      propertyId: { defaultValue: null, value: null },
     },
   },
 };
@@ -43,6 +44,22 @@ const reducers = (
           userForm: { ...state.signUpForm.userForm },
         },
       }
+      case "SET_FIELD_USER":
+        const { field, value } = action.value;
+        return {
+          ...state,
+          signUpForm: {
+            userForm: {
+              ...state.signUpForm.userForm,
+              [field]: {
+                // @ts-ignore
+                ...state.signUpForm.userForm[field],
+                value,
+              },
+            },
+            propertyForm: { ...state.signUpForm.propertyForm },
+          },
+        }
     default:
       return state;
   }
