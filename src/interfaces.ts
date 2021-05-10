@@ -21,7 +21,7 @@ export interface UserInterface {
   address: { defaultValue: string | null; value: string | null };
   email: { defaultValue: string | null; value: string | null };
   phone: { defaultValue: string | null; value: string | null };
-  birthday: { defaultValue: number | null; value: number | null };
+  birthday: { defaultValue: number | null | any; value: number | null | any };
   userName: { defaultValue: string | null; value: string | null };
   password: { defaultValue: string | null; value: string | null };
   position: { defaultValue: string | null; value: string | null };
@@ -39,10 +39,10 @@ export interface BedroomInterface {
 export interface ReservationInterface {
   bedroomId: { defaultValue: string | null; value: string | null };
   guestAmount: { defaultValue: number | null; value: number | null };
-  startDate: { defaultValue: number | null; value: number | null };
-  endDate: { defaultValue: number | null; value: number | null };
-  totalValue: { defaultValue: number | null; value: number | null };
-  reservationDate: { defaultValue: number | null; value: number | null };
+  startDate: { defaultValue: number | null | any; value: number | null | any };
+  endDate: { defaultValue: number | null | any; value: number | null | any };
+  totalValue: { defaultValue: number | null | any; value: number | null | any };
+  reservationDate: { defaultValue: number | null | any; value: number | null | any };
   checkIn: { defaultValue: boolean | null; value: boolean | null };
 }
 

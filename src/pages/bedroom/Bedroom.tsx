@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -13,6 +13,12 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import { connect } from "react-redux";
 import { ReduxState } from "../../interfaces";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -48,6 +54,7 @@ const Bedroom = ({
   reservationForm,
   bedroomForm,
 }: any): JSX.Element => {
+  const [openBedroomModal, setOpenBedroomModal] = useState(false);
   let history = useHistory();
   const classes = useStyles();
   return (
@@ -70,10 +77,71 @@ const Bedroom = ({
           </Button>
         </Toolbar>
       </AppBar>
-      <Fab className={classes.floating} variant="extended">
+      <Fab
+        className={classes.floating}
+        variant="extended"
+        onClick={() => {
+          setOpenBedroomModal(true);
+        }}
+      >
         <AddIcon style={{ marginRight: "10px" }} />
         Cadastrar Quarto
       </Fab>
+
+      <Dialog
+        open={openBedroomModal}
+        onClose={() => {
+          setOpenBedroomModal(false);
+        }}
+      >
+        <DialogTitle>Cadastro de Quarto</DialogTitle>
+        <DialogContent>
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <TextField
+                autoFocus
+                margin="dense"
+                placeholder={"Número do quarto"}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                autoFocus
+                margin="dense"
+                placeholder={"Tipo do quarto"}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                autoFocus
+                margin="dense"
+                placeholder={"Tipo de cama"}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                autoFocus
+                margin="dense"
+                type="number"
+                placeholder={"Capacidade"}
+              />
+            </Grid>
+          </Grid>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={() => {
+              setOpenBedroomModal(false);
+            }}
+            color="primary"
+          >
+            Cancelar
+          </Button>
+          <Button onClick={() => {}} color="primary">
+            Salvar
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 };
