@@ -19,13 +19,13 @@ const FormProperty = ({
             }}/>
           </Grid>
           <Grid item xs={12}>
-            <TextField label="CNPJ" fullWidth />
+            <TextField label="CNPJ" fullWidth onChange={(event) => {setFieldPropertyForm("cnpj", event.target.value)}} />
           </Grid>
           <Grid item xs={12}>
-            <TextField label="Endereço" fullWidth onChange={(event) => console.log('event', event.target.value)}/>
+            <TextField label="Endereço" fullWidth onChange={(event) => {setFieldPropertyForm("address", event.target.value)}}/>
           </Grid>
           <Grid item xs={12}>
-            <TextField label="Número de Quartos" fullWidth />
+            <TextField label="Número de Quartos" fullWidth onChange={(event) => {setFieldPropertyForm("roomAmount", event.target.value)}} />
           </Grid>
         </Grid>
       );
