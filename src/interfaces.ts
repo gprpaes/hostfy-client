@@ -1,6 +1,6 @@
 export interface ReduxState {
   signUpForm: FormStateSignUpInterface;
-  GuestForm? : GuestForm
+  guestForm? : GuestForm
 }
 
 export interface ReduxAction {

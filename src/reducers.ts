@@ -22,6 +22,24 @@ const defaultState = {
       propertyId: { defaultValue: null, value: null },
     },
   },
+  guestForm: {
+    reservationForm: {
+      bedroomId: { defaultValue: null, value: null },
+      guestAmount: { defaultValue: null, value: null },
+      startDate: { defaultValue: null, value: null },
+      endDate: { defaultValue: null, value: null },
+      totalValue: { defaultValue: null, value: null },
+      reservationDate: { defaultValue: null, value: null },
+      checkIn: { defaultValue: false, value: false },
+    },
+    bedroomForm: {
+      number: { defaultValue: null, value: null },
+      type: { defaultValue: null, value: null },
+      capacity: { defaultValue: null, value: null },
+      booked: { defaultValue: null, value: null },
+      propertyId: { defaultValue: null, value: null },
+    },
+  },
 };
 
 const reducers = (
@@ -81,41 +99,41 @@ const reducers = (
       const user = action.value[0];
       console.log({
         ...state,
-        signUpForm:{
-            propertyForm: {...state.signUpForm.propertyForm},
-            userForm: {
-                name: { defaultValue: user.name, value: null },
-                cpf: { defaultValue: user.cpf, value: null },
-                address: { defaultValue: user.address, value: null },
-                email: { defaultValue: user.email, value: null },
-                phone: { defaultValue: user.phone, value: null },
-                birthday: { defaultValue: user.birthday, value: null },
-                userName: { defaultValue: user.username, value: null },
-                password: { defaultValue: user.password, value: null },
-                position: { defaultValue: user.position, value: null },
-                propertyId: { defaultValue: user.property_id, value: null }
-            }
-        }
-      })
-      return{
+        signUpForm: {
+          propertyForm: { ...state.signUpForm.propertyForm },
+          userForm: {
+            name: { defaultValue: user.name, value: null },
+            cpf: { defaultValue: user.cpf, value: null },
+            address: { defaultValue: user.address, value: null },
+            email: { defaultValue: user.email, value: null },
+            phone: { defaultValue: user.phone, value: null },
+            birthday: { defaultValue: user.birthday, value: null },
+            userName: { defaultValue: user.username, value: null },
+            password: { defaultValue: user.password, value: null },
+            position: { defaultValue: user.position, value: null },
+            propertyId: { defaultValue: user.property_id, value: null },
+          },
+        },
+      });
+      return {
         ...state,
-        signUpForm:{
-            propertyForm: {...state.signUpForm.propertyForm},
-            userForm: {
-                name: { defaultValue: user.name, value: null },
-                cpf: { defaultValue: user.cpf, value: null },
-                address: { defaultValue: user.address, value: null },
-                email: { defaultValue: user.email, value: null },
-                phone: { defaultValue: user.phone, value: null },
-                birthday: { defaultValue: user.birthday, value: null },
-                userName: { defaultValue: user.username, value: null },
-                password: { defaultValue: user.password, value: null },
-                position: { defaultValue: user.position, value: null },
-                propertyId: { defaultValue: user.property_id, value: null }
-            }
-        }
-      }
-      
+        signUpForm: {
+          propertyForm: { ...state.signUpForm.propertyForm },
+          userForm: {
+            name: { defaultValue: user.name, value: null },
+            cpf: { defaultValue: user.cpf, value: null },
+            address: { defaultValue: user.address, value: null },
+            email: { defaultValue: user.email, value: null },
+            phone: { defaultValue: user.phone, value: null },
+            birthday: { defaultValue: user.birthday, value: null },
+            userName: { defaultValue: user.username, value: null },
+            password: { defaultValue: user.password, value: null },
+            position: { defaultValue: user.position, value: null },
+            propertyId: { defaultValue: user.property_id, value: null },
+          },
+        },
+      };
+
     default:
       return state;
   }
