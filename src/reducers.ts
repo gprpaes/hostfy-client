@@ -38,6 +38,7 @@ const defaultState = {
       capacity: { defaultValue: null, value: null },
       booked: { defaultValue: null, value: null },
       propertyId: { defaultValue: null, value: null },
+      bedtype: { defaultValue: null, value: null } 
     },
   },
 };
@@ -95,6 +96,38 @@ const reducers = (
           propertyForm: { ...state.signUpForm.propertyForm },
         },
       };
+     
+     case "SET_FIELD_BEDROOM":
+        const { fieldB, valueB } = action.value;
+        console.log(fieldB, valueB);
+        console.log({
+            ...state,
+            guestForm: {
+                bedroomForm: {
+                  ...state.guestForm.bedroomForm,
+                  [fieldB]: {
+                    // @ts-ignore
+                    ...state.guestForm.bedroomForm[fieldB],
+                    value: valueB,
+                  },
+                },
+                reservationForm: { ...state.guestForm.reservationForm },
+              },
+        })
+        return {
+            ...state,
+            guestForm: {
+                bedroomForm: {
+                  ...state.guestForm.bedroomForm,
+                  [fieldB]: {
+                    // @ts-ignore
+                    ...state.guestForm.bedroomForm[fieldB],
+                    value: valueB,
+                  },
+                },
+                reservationForm: { ...state.guestForm.reservationForm },
+              },
+        }
     case "SET_USER":
       const user = action.value[0];
       console.log({

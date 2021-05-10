@@ -34,6 +34,7 @@ export interface BedroomInterface {
   capacity: { defaultValue: number | null; value: number | null };
   booked: { defaultValue: string | null; value: string | null };
   propertyId: { defaultValue: string | null; value: string | null };
+  bedtype: { defaultValue: string | null; value: string | null };
 }
 
 export interface ReservationInterface {

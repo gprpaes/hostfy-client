@@ -19,6 +19,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import TextField from "@material-ui/core/TextField";
+import { setFieldBedroomForm } from "../../actions";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -99,6 +100,9 @@ const Bedroom = ({
           <Grid container spacing={2}>
             <Grid item xs={6}>
               <TextField
+                onChange={(event) => {
+                    setFieldBedroomForm("number", event.target.value)
+                }}
                 autoFocus
                 margin="dense"
                 placeholder={"Número do quarto"}
@@ -106,6 +110,9 @@ const Bedroom = ({
             </Grid>
             <Grid item xs={6}>
               <TextField
+                onChange={(event) => {
+                    setFieldBedroomForm("type", event.target.value)
+                }}
                 autoFocus
                 margin="dense"
                 placeholder={"Tipo do quarto"}
@@ -113,6 +120,9 @@ const Bedroom = ({
             </Grid>
             <Grid item xs={6}>
               <TextField
+                onChange={(event) => {
+                    setFieldBedroomForm("bedtype", event.target.value)
+                }}
                 autoFocus
                 margin="dense"
                 placeholder={"Tipo de cama"}
@@ -120,6 +130,9 @@ const Bedroom = ({
             </Grid>
             <Grid item xs={6}>
               <TextField
+                onChange={(event) => {
+                    setFieldBedroomForm("", event.target.value)
+                }}
                 autoFocus
                 margin="dense"
                 type="number"
