@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-redeclare */
 import { ReduxAction, ReduxState } from "./interfaces";
 
 const defaultState = {
@@ -45,16 +46,16 @@ const reducers = (
         },
       }
       case "SET_FIELD_USER":
-        const { field, value } = action.value;
+        const { fieldU, valueU } = action.value;
         return {
           ...state,
           signUpForm: {
             userForm: {
               ...state.signUpForm.userForm,
-              [field]: {
+              [fieldU]: {
                 // @ts-ignore
-                ...state.signUpForm.userForm[field],
-                value,
+                ...state.signUpForm.userForm[fieldU],
+                value: valueU,
               },
             },
             propertyForm: { ...state.signUpForm.propertyForm },
