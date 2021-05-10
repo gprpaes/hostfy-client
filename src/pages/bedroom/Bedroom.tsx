@@ -205,7 +205,7 @@ const Bedroom = ({
             <Grid item xs={6}>
               <TextField
                 onChange={(event) => {
-                  setFieldBedroomForm("", event.target.value);
+                  setFieldBedroomForm("capacity", event.target.value);
                 }}
                 autoFocus
                 margin="dense"
