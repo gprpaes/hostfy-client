@@ -8,7 +8,8 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { TextField } from "@material-ui/core";
-import Forms from "./Forms";
+import FormProperty from "./FormProperty";
+import FormUser from "./FormUser";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -19,15 +20,14 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       padding: "20px",
       paddingLeft: "150px",
-      paddingRight: "150px"
+      paddingRight: "150px",
     },
     next: {
       float: "right",
-      marginTop: "15px"
+      marginTop: "15px",
     },
   })
 );
-
 
 const Signup = (): JSX.Element => {
   const classes = useStyles();
@@ -38,9 +38,10 @@ const Signup = (): JSX.Element => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
-  const onSubmit  = (formState: object) => {
-      console.log(formState)
-  }
+  const onSubmit = (formState: object) => {
+    console.log(formState);
+  };
+
   const handleReset = () => {
     setActiveStep(0);
   };
@@ -65,10 +66,10 @@ const Signup = (): JSX.Element => {
             </div>
           ) : (
             <div>
-              <Forms stepIndex={activeStep} />
+              {activeStep == 0 ? <FormProperty /> : <FormUser />}
               <div>
                 <Button
-                  className={classes.next   }
+                  className={classes.next}
                   variant="contained"
                   color="primary"
                   onClick={handleNext}
