@@ -20,6 +20,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import TextField from "@material-ui/core/TextField";
 import { setFieldBedroomForm } from "../../actions";
+import { saveBedroom } from "../../api/api";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -101,7 +102,7 @@ const Bedroom = ({
             <Grid item xs={6}>
               <TextField
                 onChange={(event) => {
-                    setFieldBedroomForm("number", event.target.value)
+                  setFieldBedroomForm("number", event.target.value);
                 }}
                 autoFocus
                 margin="dense"
@@ -111,7 +112,7 @@ const Bedroom = ({
             <Grid item xs={6}>
               <TextField
                 onChange={(event) => {
-                    setFieldBedroomForm("type", event.target.value)
+                  setFieldBedroomForm("type", event.target.value);
                 }}
                 autoFocus
                 margin="dense"
@@ -121,7 +122,7 @@ const Bedroom = ({
             <Grid item xs={6}>
               <TextField
                 onChange={(event) => {
-                    setFieldBedroomForm("bedtype", event.target.value)
+                  setFieldBedroomForm("bedtype", event.target.value);
                 }}
                 autoFocus
                 margin="dense"
@@ -131,7 +132,7 @@ const Bedroom = ({
             <Grid item xs={6}>
               <TextField
                 onChange={(event) => {
-                    setFieldBedroomForm("", event.target.value)
+                  setFieldBedroomForm("", event.target.value);
                 }}
                 autoFocus
                 margin="dense"
@@ -150,7 +151,16 @@ const Bedroom = ({
           >
             Cancelar
           </Button>
-          <Button onClick={() => {}} color="primary">
+          <Button
+            onClick={async () => {
+              setFieldBedroomForm(
+                "propertyId",
+                userForm.propertyId.value
+              );
+              await saveBedroom(bedroomForm).then(res=> setOpenBedroomModal(false));
+            }}
+            color="primary"
+          >
             Salvar
           </Button>
         </DialogActions>

@@ -44,7 +44,7 @@ export const saveUser = async (formState: object): Promise<any> => {
 };
 
 export const saveBedroom = async (formState: object): Promise<any> => {
-  return await axios.post("http://localhost:8000/user", {
+  return await axios.post("http://localhost:8000/bedroom", {
     // @ts-ignore
     number: formState.number.value,
     // @ts-ignore
