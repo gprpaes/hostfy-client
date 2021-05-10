@@ -1,6 +1,6 @@
 export interface ReduxState {
   signUpForm: FormStateSignUpInterface;
-  step?: number | any
+  GuestForm? : GuestForm
 }
 
 export interface ReduxAction {
@@ -28,12 +28,30 @@ export interface UserInterface {
   propertyId: { defaultValue: string | null; value: string | null };
 }
 
-export interface FormStateSignUpInterface {
-  propertyForm: PropertyInterface
-  userForm: UserInterface;
- 
+export interface BedroomInterface {
+  number: { defaultValue: string | null; value: string | null };
+  type: { defaultValue: string | null; value: string | null };
+  capacity: { defaultValue: number | null; value: number | null };
+  booked: { defaultValue: string | null; value: string | null };
+  propertyId: { defaultValue: string | null; value: string | null };
 }
 
+export interface ReservationInterface {
+  bedroomId: { defaultValue: string | null; value: string | null };
+  guestAmount: { defaultValue: number | null; value: number | null };
+  startDate: { defaultValue: number | null; value: number | null };
+  endDate: { defaultValue: number | null; value: number | null };
+  totalValue: { defaultValue: number | null; value: number | null };
+  reservationDate: { defaultValue: number | null; value: number | null };
+  checkIn: { defaultValue: boolean | null; value: boolean | null };
+}
 
+export interface GuestForm {
+  reservationForm: ReservationInterface;
+  bedroomForm: BedroomInterface;
+}
 
-
+export interface FormStateSignUpInterface {
+  propertyForm: PropertyInterface;
+  userForm: UserInterface;
+}

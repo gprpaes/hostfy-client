@@ -9,6 +9,8 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import LaptopChromebookIcon from "@material-ui/icons/LaptopChromebook";
 import { useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
+import Fab from "@material-ui/core/Fab"
+import AddIcon from '@material-ui/icons/Add';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -30,6 +32,12 @@ const useStyles = makeStyles((theme: Theme) =>
       width: "500px",
       margin: "15px",
     },
+
+    floating:{
+        position: "fixed",
+        right: "25px",
+        bottom: "25px"
+    }
   })
 );
 const Bedroom = (): JSX.Element => {
@@ -55,6 +63,7 @@ const Bedroom = (): JSX.Element => {
           </Button>
         </Toolbar>
       </AppBar>
+      <Fab className={classes.floating} variant="extended"><AddIcon style={{marginRight: "10px"}}/>Cadastrar Quarto</Fab>
     </>
   );
 };
