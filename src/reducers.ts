@@ -47,6 +47,21 @@ const reducers = (
       }
       case "SET_FIELD_USER":
         const { fieldU, valueU } = action.value;
+        console.log(fieldU, valueU)
+        console.log({
+            ...state,
+            signUpForm: {
+              userForm: {
+                ...state.signUpForm.userForm,
+                [fieldU]: {
+                  // @ts-ignore
+                  ...state.signUpForm.userForm[fieldU],
+                  value: valueU,
+                },
+              },
+              propertyForm: { ...state.signUpForm.propertyForm },
+            },
+          })
         return {
           ...state,
           signUpForm: {

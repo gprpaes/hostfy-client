@@ -12,9 +12,10 @@ import FormProperty from "./FormProperty";
 import FormUser from "./FormUser";
 import { FormStateSignUpInterface, ReduxState } from "../../interfaces";
 import { connect } from "react-redux";
-import { saveProperty } from "../../api/api";
+import { saveProperty, saveUser } from "../../api/api";
 import CircularProgress from "@material-ui/core/CircularProgress";
-
+import { setFieldUserForm } from "../../actions";
+import { useHistory } from "react-router-dom";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     main: {
@@ -37,6 +38,7 @@ const Signup = ({
   propertyForm,
   userForm,
 }: FormStateSignUpInterface): JSX.Element => {
+  let history = useHistory();
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const steps = ["Propriedade", "Administrador"];
@@ -48,11 +50,19 @@ const Signup = ({
       const response = await saveProperty(formState); 
       if(response.data && response.data.success){
           setLoading(false);
+          setFieldUserForm("propertyId", response.data.data.id)
           setActiveStep((prevActiveStep) => prevActiveStep + 1);
-      }
+      } 
+    }
+    else if(activeStep == 1){
+        setLoading(true);
+        const response = await saveUser(formState);
+        if(response.data && response.data.success){
+            setLoading(false)
+            history.push("/")
+        }
     }
     //setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    console.log(formState);
   };
 
   const handleReset = () => {
@@ -66,7 +76,7 @@ const Signup = ({
           <Stepper activeStep={activeStep} alternativeLabel>
             {steps.map((label) => (
               <Step key={label}>
-                <StepLabel>{label}</StepLabel>
+                <StepLabel>{label}</StepLabel> 
               </Step>
             ))}
           </Stepper>
@@ -86,7 +96,7 @@ const Signup = ({
                   variant="contained"
                   color="primary"
                   onClick={() => {
-                    onSubmit(propertyForm);
+                    activeStep == 0 ? onSubmit(propertyForm): onSubmit(userForm)
                   }}
                 >
                   {loading ? <CircularProgress style={{marginRight: "15px"}}color="secondary"/> : null}
