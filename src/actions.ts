@@ -7,3 +7,8 @@ export const setFieldPropertyForm = (field: string, value: string): void => {
 export const setFieldUserForm = (fieldU: string, valueU: string): void => {
     store.dispatch({ type: "SET_FIELD_USER", value: { fieldU, valueU } });
   };
+
+
+  export const setUser = (user: object): void => {
+      store.dispatch({type: "SET_USER", value: user})
+  }

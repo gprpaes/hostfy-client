@@ -44,38 +44,78 @@ const reducers = (
           },
           userForm: { ...state.signUpForm.userForm },
         },
-      }
-      case "SET_FIELD_USER":
-        const { fieldU, valueU } = action.value;
-        console.log(fieldU, valueU)
-        console.log({
-            ...state,
-            signUpForm: {
-              userForm: {
-                ...state.signUpForm.userForm,
-                [fieldU]: {
-                  // @ts-ignore
-                  ...state.signUpForm.userForm[fieldU],
-                  value: valueU,
-                },
-              },
-              propertyForm: { ...state.signUpForm.propertyForm },
+      };
+    case "SET_FIELD_USER":
+      const { fieldU, valueU } = action.value;
+      console.log(fieldU, valueU);
+      console.log({
+        ...state,
+        signUpForm: {
+          userForm: {
+            ...state.signUpForm.userForm,
+            [fieldU]: {
+              // @ts-ignore
+              ...state.signUpForm.userForm[fieldU],
+              value: valueU,
             },
-          })
-        return {
-          ...state,
-          signUpForm: {
-            userForm: {
-              ...state.signUpForm.userForm,
-              [fieldU]: {
-                // @ts-ignore
-                ...state.signUpForm.userForm[fieldU],
-                value: valueU,
-              },
-            },
-            propertyForm: { ...state.signUpForm.propertyForm },
           },
+          propertyForm: { ...state.signUpForm.propertyForm },
+        },
+      });
+
+      return {
+        ...state,
+        signUpForm: {
+          userForm: {
+            ...state.signUpForm.userForm,
+            [fieldU]: {
+              // @ts-ignore
+              ...state.signUpForm.userForm[fieldU],
+              value: valueU,
+            },
+          },
+          propertyForm: { ...state.signUpForm.propertyForm },
+        },
+      };
+    case "SET_USER":
+      const user = action.value[0];
+      console.log({
+        ...state,
+        signUpForm:{
+            propertyForm: {...state.signUpForm.propertyForm},
+            userForm: {
+                name: { defaultValue: user.name, value: null },
+                cpf: { defaultValue: user.cpf, value: null },
+                address: { defaultValue: user.address, value: null },
+                email: { defaultValue: user.email, value: null },
+                phone: { defaultValue: user.phone, value: null },
+                birthday: { defaultValue: user.birthday, value: null },
+                userName: { defaultValue: user.username, value: null },
+                password: { defaultValue: user.password, value: null },
+                position: { defaultValue: user.position, value: null },
+                propertyId: { defaultValue: user.property_id, value: null }
+            }
         }
+      })
+      return{
+        ...state,
+        signUpForm:{
+            propertyForm: {...state.signUpForm.propertyForm},
+            userForm: {
+                name: { defaultValue: user.name, value: null },
+                cpf: { defaultValue: user.cpf, value: null },
+                address: { defaultValue: user.address, value: null },
+                email: { defaultValue: user.email, value: null },
+                phone: { defaultValue: user.phone, value: null },
+                birthday: { defaultValue: user.birthday, value: null },
+                userName: { defaultValue: user.username, value: null },
+                password: { defaultValue: user.password, value: null },
+                position: { defaultValue: user.position, value: null },
+                propertyId: { defaultValue: user.property_id, value: null }
+            }
+        }
+      }
+      
     default:
       return state;
   }

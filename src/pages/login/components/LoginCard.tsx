@@ -12,6 +12,7 @@ import { COLORS } from "../../../const";
 import { login } from "../../../api/api";
 import { useHistory } from "react-router-dom";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import {setUser} from "../../../actions"
 const useStyles = makeStyles({
   cardMain: {
     minWidth: "475px",
@@ -95,6 +96,7 @@ const LoginCard = (): JSX.Element => {
               const response = await login(email, password);
               if (response.data && response.data.data.length > 0) {
                 setLoading(false);
+                setUser(response.data.data)
                 history.push("/admin");
               }else{
                   setLoading(false)
