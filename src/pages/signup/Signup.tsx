@@ -11,8 +11,9 @@ import { TextField } from "@material-ui/core";
 import FormProperty from "./FormProperty";
 import FormUser from "./FormUser";
 import { FormStateSignUpInterface, ReduxState } from "../../interfaces";
-import {connect} from "react-redux"
-import  {saveProperty} from "../../api/api"
+import { connect } from "react-redux";
+import { saveProperty } from "../../api/api";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -32,14 +33,19 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const Signup = ({propertyForm, userForm}: FormStateSignUpInterface): JSX.Element => {
+const Signup = ({
+  propertyForm,
+  userForm,
+}: FormStateSignUpInterface): JSX.Element => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const steps = ["Propriedade", "Administrador"];
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = async (formState: object) => {
-    if(activeStep == 0){
-        await saveProperty(formState)
+    if (activeStep == 0) {
+      setLoading(true)
+      await saveProperty(formState);
     }
     //setActiveStep((prevActiveStep) => prevActiveStep + 1);
     console.log(formState);
@@ -75,9 +81,12 @@ const Signup = ({propertyForm, userForm}: FormStateSignUpInterface): JSX.Element
                   className={classes.next}
                   variant="contained"
                   color="primary"
-                  onClick={() => {onSubmit(propertyForm)}}
+                  onClick={() => {
+                    onSubmit(propertyForm);
+                  }}
                 >
-                  {activeStep === steps.length - 1 ? "Finish" : "Next"}
+                  {loading ? <CircularProgress style={{marginRight: "15px"}}color="secondary"/> : null}
+                  {activeStep === steps.length - 1 ? " Finish" : " Next"}
                 </Button>
               </div>
             </div>
@@ -89,11 +98,10 @@ const Signup = ({propertyForm, userForm}: FormStateSignUpInterface): JSX.Element
 };
 
 const mapStateToProps = (state: ReduxState): FormStateSignUpInterface => {
-    return {
-      
-      propertyForm: state.signUpForm.propertyForm,
-      userForm: state.signUpForm.userForm,
-    };
+  return {
+    propertyForm: state.signUpForm.propertyForm,
+    userForm: state.signUpForm.userForm,
   };
-  
-  export default connect(mapStateToProps)(Signup);
+};
+
+export default connect(mapStateToProps)(Signup);
