@@ -21,7 +21,13 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
     },
     gridmain: {
-      height: "93.2vh", 
+      height: "93.2vh",
+    },
+
+    buttonmain: {
+      height: "500px",
+      width: "500px",
+      margin: "15px"
     },
   })
 );
@@ -41,7 +47,7 @@ const Admin = (): JSX.Element => {
             <HotelIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Administrador
+            Hostfy Administrador
           </Typography>
           <Button color="inherit" onClick={() => history.push("/")}>
             Sair
@@ -49,8 +55,27 @@ const Admin = (): JSX.Element => {
         </Toolbar>
       </AppBar>
 
-      <Grid container direction="row" justify="center" alignItems="center" className ={classes.gridmain}>
-        <h1>aaaa</h1>
+      <Grid
+        container
+        direction="row"
+        justify="center"
+        alignItems="center"
+        className={classes.gridmain}
+      >
+        <Button
+          className={classes.buttonmain}
+          variant="contained"
+          color="primary"
+        >
+          Quartos
+        </Button>
+        <Button
+          className={classes.buttonmain}
+          variant="contained"
+          color="primary"
+        >
+          Reservas
+        </Button>
       </Grid>
     </>
   );
