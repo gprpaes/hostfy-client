@@ -42,3 +42,9 @@ export const saveUser = async (formState: object): Promise<any> => {
     blocked: false,
   });
 };
+
+export const login = async (email: string, password: string): Promise<any> => {
+  return await axios.get(
+    `http://localhost:8000/login?email=${email}&password=${password}`
+  );
+};
