@@ -12,6 +12,7 @@ import FormProperty from "./FormProperty";
 import FormUser from "./FormUser";
 import { FormStateSignUpInterface, ReduxState } from "../../interfaces";
 import {connect} from "react-redux"
+import  {saveProperty} from "../../api/api"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -36,12 +37,11 @@ const Signup = ({propertyForm, userForm}: FormStateSignUpInterface): JSX.Element
   const [activeStep, setActiveStep] = useState(0);
   const steps = ["Propriedade", "Administrador"];
 
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-
-  const onSubmit = (formState: object) => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  const onSubmit = async (formState: object) => {
+    if(activeStep == 0){
+        await saveProperty(formState)
+    }
+    //setActiveStep((prevActiveStep) => prevActiveStep + 1);
     console.log(formState);
   };
 
@@ -75,7 +75,7 @@ const Signup = ({propertyForm, userForm}: FormStateSignUpInterface): JSX.Element
                   className={classes.next}
                   variant="contained"
                   color="primary"
-                  onClick={() => onSubmit(propertyForm)}
+                  onClick={() => {onSubmit(propertyForm)}}
                 >
                   {activeStep === steps.length - 1 ? "Finish" : "Next"}
                 </Button>
